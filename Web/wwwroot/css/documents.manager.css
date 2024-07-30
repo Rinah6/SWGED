@@ -1,0 +1,13 @@
+.document {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-left: 5px; 
+    margin-right: 20px; 
+    margin-bottom: 10px; 
+    padding: 20px; 
+    background-color: #EEEEEE; 
+    border-radius: 20px; 
+    cursor: pointer; 
+    list-style-type: none;
+}

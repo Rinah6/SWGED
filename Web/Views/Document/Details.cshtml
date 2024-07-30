@@ -1,0 +1,276 @@
+<link rel="stylesheet" href="~/css/css-skeletons.min.css" />
+
+<div id="document-actions-container" class="col-md-3" style="margin-top: 20px; "></div>
+
+<div class="col-md-3" id="redirection-container"></div>
+
+<div class="card-body p-20" id="recipients-list-container" style="display: none; margin: 20px; border: 2px solid #027aca; border-radius: 5px; width: 300px; ">
+	<hr />
+	<div id="send-to-container" style="margin-bottom: 20px;"></div>
+
+	<ul class="nav nav-pills flex-column" id="recipients-list"></ul>
+
+	<button class="btn btn-primary" id="send-validation-circuit" style="margin: 20px;">Créer le circuit de validation</button>
+</div>
+
+<div id="document-details-container"></div>
+
+<div class="modal fade" id="tom-pro-linking-modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header bg-gray-dark">
+				<h4 class="modal-title"><i class="fa fa-user-alt"></i>Tom Pro</h4>
+				<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+
+			<div class="modal-body">
+				<div class="form-group">
+					<label for="tom-pro-connections">Instance: </label>
+
+					<select id="tom-pro-connections" style="width: 200px; "></select>
+				</div>
+
+				<div id="tom-pro-databases-container"></div>
+
+				<div id="operation-types-container"></div>
+
+				<div class="form-group" id="operation-number-type-container"></div>
+
+                <div 
+                    id="skeleton-loader"
+                    class="skeleton skeleton-list display-none" 
+                    style="
+                        --lines: 5;
+                        --l-h: 20px;
+                        --c-w: 100%;
+                        --bullet-ratio: 1;
+                    "
+                ></div>
+				<div class="form-group">
+					<table id="attachements-operation-result" style="width: 100%; "></table>
+				</div>
+			</div>
+
+			<div class="modal-footer justify-content-between">
+				<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+				<button type="button" class="btn btn-primary" id="update-tom-pro-attachement-link">Envoyer</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="document-type-recipients-modal" data-id="0">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="card-primary">
+				<div class="card-header">
+					<h4 class="card-title"><i class="fa fa-user-alt"></i>Type de document - Validateurs</h4>
+					<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+
+				<div class="card-body">
+					<div class="form-group">
+						<label for="new-document-type-label">Type de document: </Label>
+						<select id="document-type-recipients" name="document-type-recipients" style="width: 200px;"></select>
+					</div>
+
+					<ul id="steps"></ul>
+				</div>
+			</div>
+
+			<div class="modal-footer justify-content-between">
+				<button type="button" class="btn btn-danger" id="close-document-type-recipients-modal">Annuler</button>
+				<button type="button" class="btn btn-primary" id="select-document-type-recipients">Sélectionner</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="recipients-modal" data-id="">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header bg-gray-dark">
+				<h4 class="modal-title">
+					<i class="fa fa-user-alt"></i>
+					Étape de validation
+				</h4>
+
+				<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+
+			<div class="modal-body">
+				<div class="form-group">
+					<label for="processing-duration">Durée de traitement (en heures): </label>
+					<input type="number" min="0" id="processing-duration" class="form-control" style="width: 200px;" />
+				</div>
+
+				<div class="form-group">
+					<label for="recipients">Utilisateurs: </label>
+
+					<select id="recipients" multiple="multiple" class="form-control" style="width: 320px;"></select>
+				</div>
+
+				<div class="form-group container row">
+					<label for="message">Message : </Label>
+					<textarea id="message"></textarea>
+				</div>
+			</div>
+
+			<div class="modal-footer justify-content-between">
+				<button type="button" class="btn btn-danger" id="close-users-steps-modal">Annuler</button>
+				<button type="button" class="btn btn-primary" id="save-users-steps">Enregistrer</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="validation-modal">
+	<div class="modal-dialog modal-xl">
+		<div class="modal-content">
+			<div class="modal-header bg-gray-dark">
+				<h4 class="modal-title"><i class="fa fa-user-alt"></i>Validation</h4>
+				<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+
+			<div class="modal-body">
+				<form>
+					<div class="form-group container row">
+						<label for="commentaire">Commentaire: </Label>
+						<textarea id="commentaryv" class="form-control" cols="3" rows="10"></textarea>
+					</div>
+				</form>
+			</div>
+
+			<div class="modal-footer justify-content-between">
+				<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+				<button type="button" class="btn btn-primary" data-action="validation">Envoyer</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="canceling-modal">
+	<div class="modal-dialog modal-xl">
+		<div class="modal-content">
+			<div class="modal-header bg-gray-dark">
+				<h4 class="modal-title"><i class="fa fa-user-alt"></i>Refus</h4>
+				<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+
+			<div class="modal-body">
+				<form>
+					<div class="form-group container row">
+						<label for="comment-of-canceling">Commentaire: </Label>
+						<textarea id="comment-of-canceling" class="form-control" cols="3" rows="10"></textarea>
+					</div>
+				</form>
+			</div>
+
+			<div class="modal-footer justify-content-between">
+				<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+				<button type="button" class="btn btn-primary" id="cancel-document">Envoyer</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="redirection-modal">
+	<div class="modal-dialog modal-xl">
+		<div class="modal-content">
+			<div class="modal-header bg-gray-dark">
+				<h4 class="modal-title"><i class="fa fa-user-alt"></i>Redirection</h4>
+				<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+
+			<div class="modal-body">
+				<div class="form-group container row">
+					<label for="comment-of-redirection">Commentaire: </Label>
+					<textarea id="comment-of-redirection" class="form-control" cols="3" rows="10"></textarea>
+				</div>
+
+				<div class="form-group">
+					<select id="former-document-steps" style="width: 200px; ">
+						<option value="" selected></option>
+					</select>
+				</div>
+
+				<ul id="former-document-users-step"></ul>
+			</div>
+
+			<div class="modal-footer justify-content-between">
+				<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+				<button type="button" class="btn btn-primary" id="redirect">Rediriger</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="manage-document-accesses-modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header bg-gray-dark">
+				<h4 class="modal-title"><i class="fa fa-user-alt"></i>Accès</h4>
+
+				<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+
+			<div class="modal-body">
+				<div style="display: flex; align-items: center; gap: 20px; ">
+					<div class="form-group">
+						<input 
+							type="radio" 
+							id="visible-by-everyone"
+							name="accesses-group"
+							value="visible-by-everyone"
+						/>
+
+						<label for="visible-by-everyone">Visible par tous</label>
+					</div>
+
+					<div class="form-group">
+						<input 
+							type="radio" 
+							id="custom-accesses"
+							name="accesses-group"
+							value="custom-accesses"
+						/>
+
+						<label for="custom-accesses">Accès personnalisés</label>
+					</div>
+				</div>
+
+				<div id="document-accessors-list"></div>
+			</div>
+
+			<div class="modal-footer justify-content-between">
+				<button type="button" class="btn btn-danger" id="close-document-accesses-modal">Annuler</button>
+				<button type="button" class="btn btn-primary" id="save-document-accesses">Envoyer</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="module" src="~/js/documents/details/index.js" asp-append-version="true"></script>
+<script type="module" src="~/js/documents/details/download.js" asp-append-version="true"></script>
+<script type="module" src="~/js/documents/details/attachements.js" asp-append-version="true"></script>
+<script type="module" src="~/js/documents/details/actions.js" asp-append-version="true"></script>
+<script type="module" src="~/js/documents/details/dynamicFields.js" asp-append-version="true"></script>
+<script type="module" src="~/js/documents/details/tom_proLinking.js" asp-append-version="true"></script>
+<script type="module" src="~/js/documents/details/recipients.js" asp-append-version="true"></script>
+<script type="module" src="~/js/documents/details/accesses.js" asp-append-version="true"></script>
+<script type="module" src="~/js/documents/details/metadata.js" asp-append-version="true"></script>
+<script type="module" src="~/js/documents/details/physicalLocation.js" asp-append-version="true"></script>

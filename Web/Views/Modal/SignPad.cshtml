@@ -1,0 +1,93 @@
+﻿<link href="~/lib/singpad/style.css" rel="stylesheet" />
+
+<script src="~/lib/signaturepad/signature_pad.umd.js"></script>
+
+<div class="modal fade" id="modal_document" data-bs-backdrop="static" data-bs-keyboard="false" style="font-family: Helvetica, Sans-Serif; display:none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-gray-dark">
+                <h4 class="modal-title"><i class="fa fa-paper-plan"></i> </h4>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <textarea id="commentaire_archive" placeholder="Saisir votre commentaire..." class="form-control" rows="10"></textarea>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class=" button clear btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-primary" document-action="archive">Valider</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal_document" data-bs-backdrop="static" data-bs-keyboard="false"
+	style="font-family: Helvetica, Sans-Serif; display:none;">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header bg-gray-dark">
+				<h4 class="modal-title"><i class="fa fa-paper-plan"></i> </h4>
+				<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<textarea id="commentaire_archive" placeholder="Saisir votre commentaire..." class="form-control"
+					rows="10"></textarea>
+			</div>
+			<div class="modal-footer justify-content-between">
+				<button type="button" class=" button clear btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+				<button type="button" class="btn btn-primary" document-action="archive">Valider</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="signature_tab" data-bs-backdrop="static" data-bs-keyboard="false"
+	style="font-family: Helvetica, Sans-Serif; display:none;font-size: 14px;zoom: 80% !important;">
+	<div class="modal-dialog modal-lg" sign-modal-dialog>
+		<div class="modal-content">
+			<div class="modal-header bg-gray-dark">
+				<h4 class="modal-title"><i class="fa fa-paper-plan"></i> </h4>
+				<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body d-flex" id="signaturePad-container">
+				<div id="signature-pad" class="signature-pad col">
+					<div class="signature-pad--body">
+						<canvas id="signaturePad"></canvas>
+					</div>
+					<div class="signature-pad--footer">
+						<div class="description">Votre signature</div>
+					</div>
+
+					<button type="button" class="button clear btn btn-secondary" pad-clear="signature">Réinitialiser
+						signature</button>
+				</div>
+				<div id="paraphe-pad" class="signature-pad col-4">
+					<div class="signature-pad--body">
+						<canvas id="paraphePad"></canvas>
+					</div>
+					<div class="signature-pad--footer">
+						<div class="description">Votre paraphe</div>
+					</div>
+
+					<button type="button" class="button clear btn btn-secondary" pad-clear="paraphe">Réinitialiser
+						paraphe</button>
+				</div>
+			</div>
+			<div class="modal-body">
+				<textarea id="commentarys" placeholder="Saisir votre commentaire..." class="form-control"
+					rows="10"></textarea>
+			</div>
+			<div class="modal-footer justify-content-between">
+				<button type="button" class=" button clear btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+				<button type="button" class="btn btn-primary" sign-confirm>Valider</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="~/lib/singpad/app.js"></script>

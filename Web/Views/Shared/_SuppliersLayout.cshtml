@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>SoftGED - Fournisseurs</title>
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" />
+        <link rel="stylesheet" href="~/admlte/plugins/fontawesome-free/css/all.min.css" />
+        <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+        <link rel="stylesheet" href="~/admlte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css" />
+        <link rel="stylesheet" href="~/admlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css" />
+        <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="~/admlte/plugins/jqvmap/jqvmap.min.css" />
+        <link rel="stylesheet" href="~/admlte/dist/css/adminlte.css" />
+        <link rel="stylesheet" href="~/admlte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css" />
+        <link rel="stylesheet" href="~/admlte/plugins/daterangepicker/daterangepicker.css" />
+        <link rel="stylesheet" href="~/admlte/plugins/summernote/summernote-bs4.min.css" />
+        <link rel="stylesheet" href="~/admlte/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css" />
+        <link rel="stylesheet" href="~/lib/select2/select2.min.css" />
+        <link rel="stylesheet" href="~/lib/summernote/summernote.min.css" />
+
+        <link rel="stylesheet" href="~/admlte/plugins/sweetalert2/sweetalert2.min.css" />
+        <link rel="stylesheet" href="~/css/style.css" />
+        <link rel="stylesheet" href="~/css/loader.css" />
+
+        <script src="~/lib/pdfjs/pdf.worker.min.js"></script>
+        <script src="~/lib/pdfjs/pdf.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="~/admlte/plugins/jquery/jquery.min.js"></script>
+        <script src="~/admlte/plugins/sweetalert2/sweetalert2.all.min.js"></script>
+		<script src="~/lib/emails-input/utils.js"></script>
+		<script src="~/lib/emails-input/emails-input.js"></script>
+		<script src="~/lib/axios.min.js"></script>
+		<script src="~/lib/clipboard.min.js"></script>
+        <script src="~/lib/dayjs.min.js"></script>
+        <script src="~/lib/select2/select2.min.js"></script>
+         <script src="~/lib/summernote/summernote.min.js"></script>
+
+        <script src="~/admlte/plugins/jquery-ui/jquery-ui.min.js"></script>
+        <script src="~/admlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="~/admlte/plugins/chart.js/Chart.min.js"></script>
+        <script src="~/admlte/plugins/sparklines/sparkline.js"></script>
+        <script src="~/admlte/plugins/jqvmap/jquery.vmap.min.js"></script>
+        <script src="~/admlte/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+        <script src="~/admlte/plugins/jquery-knob/jquery.knob.min.js"></script>
+        <script src="~/admlte/plugins/moment/moment.min.js"></script>
+        <script src="~/admlte/plugins/daterangepicker/daterangepicker.js"></script>
+        <script src="~/admlte/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+        <script src="~/admlte/plugins/summernote/summernote-bs4.min.js"></script>
+        <script src="~/admlte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+        <script src="~/admlte/dist/js/adminlte.js"></script>
+        <script src="~/admlte/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+	</head>
+
+	<body class="hold-transition sidebar-mini wrapper" style="user-select:none;">
+		<div id="loader" class="lds-dual-ring display-none overlay"></div>
+        
+        <main>
+            @RenderBody()
+        </main>
+
+        <footer class="main-footer">
+            <strong>Copyright &copy; <span id="current-year"></span> <a href="https://www.softwell.mg">Softwell</a>.</strong>
+            All rights reserved.
+            <div class="float-right d-none d-sm-inline-block">
+                <b>Version</b> beta
+            </div>
+        </footer>
+
+        <script defer>
+            $.widget.bridge('uibutton', $.ui.button);
+            
+            $('#current-year').text(new Date().getFullYear());
+        </script>
+    </body>
+</html>

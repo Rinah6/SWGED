@@ -1,0 +1,83 @@
+﻿@{
+	Layout = "";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>SoftGED</title>
+
+        <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="~/lib/fontawesome/css/all.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" />
+        <link rel="stylesheet" href="~/admlte/plugins/fontawesome-free/css/all.min.css" />
+        <link rel="stylesheet" href="~/admlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css" />
+        <link rel="stylesheet" href="~/admlte/dist/css/adminlte.min.css" />
+        <link rel="stylesheet" href="~/css/loader.css" />
+        <link rel="stylesheet" href="~/css/login.css" />
+
+        <script src="~/admlte/plugins/jquery/jquery.min.js"></script>
+        <script src="~/admlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="~/admlte/dist/js/adminlte.min.js"></script>
+        <script src="~/lib/axios.min.js"></script>
+	</head>
+
+    <body class="hold-transition login-page">
+        <div id="loader" class="lds-dual-ring display-none overlay"></div>
+        
+        <div class="auth-login">
+            <div class="login-box">
+                <div>
+                    <div class="card-header text-center">
+                        <img src="~/img/logo-soft.png" />
+
+                        <p class="login-box-msg font-italic">Zéro Papier, Facile à utiliser, Rapide et Sécurisé</p>
+                    </div>
+
+                    <div class="card-body">
+                        <p class="login-box-msg font-weight-bold" style="color: #3d9970">LOGIN</p>
+
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" data-id="username" placeholder="Nom d'utilisateur" />
+
+                            <div class="input-group-append">
+                                <div class="input-group-text bg-gradient-secondary">
+                                    <span class="fas fa-user"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <input type="password" class="form-control" data-id="password" placeholder="Mot de Passe" />
+
+                            <div class="input-group-append">
+                                <div class="input-group-text bg-gradient-secondary">
+                                    <span class="fas fa-lock"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <button class="btn bg-gradient-olive btn-block text-white" data-id="login">Se connecter</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="main-footerRFR">
+                <strong>Copyright &copy; <span id="current-year"></span> <a href="https://www.softwell.mg">Softwell</a>.</strong>
+                All rights reserved.
+            </footer>
+        </div>
+
+		<script type="module" src="~/js/login/index.js"></script>
+
+		<script defer>
+			$('#current-year').text(new Date().getFullYear());
+		</script>
+	</body>
+</html>

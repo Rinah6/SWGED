@@ -1,0 +1,41 @@
+﻿<div class="modal fade" id="recipient">
+	<div class="modal-dialog modal-xl">
+		<div class="modal-content">
+			<div class="modal-header bg-gray-dark">
+				<h4 class="modal-title"><i class="fa fa-user-alt"></i> Destinataire</h4>
+				<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="form-group container row">
+						<label for="role">Rôle</Label><input type="text" class="col form-control form-control-border" id="role" placeholder="Rôle :">
+					</div>
+
+                    <div class="form-group container row">
+                        <label for="receiver">Email</Label><input type="email" class="col form-control form-control-border" id="receiver" placeholder="À :">
+                        <div class="col-1" role="group" aria-label="Basic checkbox toggle button group">
+                            <input type="checkbox" class="btn-check" id="ccCheck" autocomplete="off">
+                            <label class="btn btn-outline-secondary" style="padding : 6px 20px" for="ccCheck">CC</label>
+                        </div>
+                    </div>
+					<div class="form-group container row" id="ccContainer">
+						<label for="cc">Cc</Label><div class="col p-0" id="cc"></div>
+                    </div>
+
+					<div class="form-group container row">
+						<label for="message">Message</Label><textarea id="message"></textarea>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer justify-content-between">
+				<button type="button" class="btn btn-danger" id="resetMail">Réinitialiser</button>
+				
+				<button type="button" class="btn btn-primary" id="saveRecipient">Ajouter</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="module" src="~/js/documents/recipients.js" asp-append-version="true"></script>

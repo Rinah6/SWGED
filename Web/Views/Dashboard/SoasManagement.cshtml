@@ -1,0 +1,108 @@
+﻿@{
+    ViewData["Controller"] = "Gestion des SOAS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/admlte/plugins/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+
+<script src="~/admlte/plugins/sweetalert2/sweetalert2.all.min.js"></script>
+
+<div class="card">
+    <div class="card-header">
+        <br />
+        <div class="col-lg-4 col-6" style="cursor: pointer; " user-modal>
+            <div class="small-box bg-gradient-success">
+                <div class="inner">
+                    <h3 id="societe_nombre"></h3>
+                    <p>Nombre de SOAS total</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-plus"></i>
+                </div>
+            </div>
+        </div>
+        <br /><br />
+        <h3 class="card-title">Liste des SOAS</h3>
+        <div class="card-tools">
+            <div class="input-group input-group-sm" style="width: 150px;">
+                <input type="text" id="wsearch" class="form-control float-right" placeholder="Search">
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-default">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body table-responsive p-0">
+        <table class="table table-hover text-nowrap">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="liste_user">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal fade" id="create-project-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="card-primary">
+                <div class="card-header">
+                    <h3 class="card-title" id="modal-title">Insertion d'un nouveau SOA</h3>
+
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="name">Nom: </label>
+                        <input type="text" class="form-control" id="name" placeholder="Nom">
+                        <input type="hidden" id="id" value="">
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary" create-project>Envoyer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="update-project-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="card-primary">
+                <div class="card-header">
+                    <h3 class="card-title" id="modal-title">Modification du SOA</h3>
+
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="current-name">Nom: </label>
+                        <input type="text" class="form-control" id="current-name" placeholder="Nom" />
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary" update-project>Envoyer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/widgets.js" asp-append-version="true"></script>
+<script type="module" src="~/js/dashboard/settings/soas.js" asp-append-version="true"></script>

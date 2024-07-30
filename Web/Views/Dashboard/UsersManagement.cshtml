@@ -1,0 +1,165 @@
+﻿@{
+    ViewData["Controller"] = "Gestion des utilisateurs";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .select2-container .select2-selection--single {
+        height: 40px;
+    }
+</style>
+
+<div class="card">
+    <div class="card-header"><br />
+        <div class="row">
+            <div class="col-lg-4 col-6" style="cursor: pointer; " new-user-modal>
+                <div class="small-box bg-gradient-success">
+                    <div class="inner">
+                        <h3 id="max_user"></h3>
+                        <p>Capacité Totale</p>
+                    </div>
+                    
+                    <div class="icon">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-6" style="cursor: pointer; ">
+                <div class="small-box bg-gradient-primary">
+                    <div class="inner">
+                        <h3 id="curr_user"></h3>
+                        <p>Nombre d'utilisateurs total</p>
+                    </div>
+
+                    <div class="icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-6" style="cursor: pointer; ">
+                <div class="small-box bg-gradient-danger">
+                    <div class="inner">
+                        <h3 id="reste_user"></h3>
+                        <p>Nombre d'utilisateurs restant</p>
+                    </div>
+
+                    <div class="icon">
+                        <i class="fas fa-minus"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br /><br />
+
+        <h3 class="card-title">Liste des utilisateurs</h3>
+
+        <div class="card-tools">
+            <div class="input-group input-group-sm" style="width: 150px;">
+                <input type="text" id="wsearch" class="form-control float-right" placeholder="Search" />
+
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-default">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body table-responsive p-0">
+        <table class="table table-hover text-nowrap">
+            <thead>
+                <tr>
+                    <th>Nom d'utilisateur</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="liste_user"></tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal fade" id="user-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="card-primary">
+                <div class="card-header">
+                    <h3 class="card-title" id="modal-title"></h3>
+
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="username">Nom d'utilisateur: </label>
+                        <input type="text" class="form-control" id="username" placeholder="Nom d'utilisateur " />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="last-name">Nom: </label>
+                        <input type="text" class="form-control" id="last-name" placeholder="Nom" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="first-name">Prénom: </label>
+                        <input type="text" class="form-control" id="first-name" placeholder="Prénom" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Adresse email: </label>
+                        <input type="email" class="form-control" id="email" placeholder="Adresse email" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Mot de passe: </label>
+                        <input type="text" class="form-control" id="password" placeholder="Mot de passe" />
+                    </div>
+
+                    <div class="form-group" id="soa-container">
+                        <label for="soas">SOA: </label>
+                        <select id="soas" name="soas" class="form-control" style="width: 300px;"></select>
+                    </div>
+
+                    <div class="form-group" id="projects-container">
+                        <label for="projects">Projet principal: </label>
+                        <select id="projects" name="projects" class="form-control" style="width: 300px;"></select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="new-current-sites">Sites autorisés: </label>
+                        <div id="new-current-sites"></div>
+                    </div>
+
+                    <div class="form-group" id="projects-container">
+                        <label for="projectsA">Autres projets: </label>
+                        <select id="projectsA" name="projectsA" class="form-control" style="width: 300px;" multiple="multiple"></select>
+                    </div>
+
+                    <div class="form-group" id="roles-container">
+                        <label for="roles">Rôle: </label>
+                        <select class="form-control" id="roles"></select>
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary" data-action="submit" data-id="0">Envoyer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/widgets.js" asp-append-version="true"></script>
+<script type="module" src="~/js/dashboard/settings/users.js" asp-append-version="true"></script>

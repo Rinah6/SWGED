@@ -1,0 +1,294 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+
+canvas {
+	padding: 2px;
+}
+
+.pdf-viewer {
+	/*background-color: #333;*/
+	background: url(../img/pdfBackground.png);
+	background-size: cover;
+	margin: 0;
+	width: 100%;
+	border: 5px solid #083141da;
+	padding: 0;
+}
+
+.pdf-viewer-client {
+	background-color: #333;
+	margin: 0;
+	width: 100%;
+}
+
+#input-img {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	opacity: 0.8;
+	transition: opacity 0.2s ease-in;
+	width: 150px;
+	height: 150px;
+	background: url(../img/pdfIcon.png) no-repeat center / cover;
+}
+
+#input-img:hover {
+	opacity: 1;
+}
+
+#pdf-container {
+	width: 1200px;
+	text-align: center
+}
+
+.box-setting {
+	box-shadow: 0px 0px 17px 3px #0831412e;
+	padding: 10px;
+	position: fixed;
+	right: 0px;
+	top: 50px;
+	z-index: 10;
+	background: white;
+	transition: 1.0s cubic-bezier(.36, -0.01, 0, .77);
+}
+
+@media screen and (max-width: 576px) {
+	.box-setting {
+		width: 550px;
+	}
+
+	.box-setting.closed {
+		margin-right: -450px;
+	}
+}
+
+@media (max-width: 768px) and (min-width: 576px) {
+	.box-setting {
+		width: 600px;
+	}
+
+	.box-setting.closed {
+		margin-right: -500px;
+	}
+}
+
+@media (max-width: 1360px) and (min-width: 768px) {
+	.box-setting {
+		width: 700px;
+	}
+
+	.box-setting.closed {
+		margin-right: -600px;
+	}
+}
+
+@media (min-width: 1360px) {
+	.box-setting {
+		width: 800px;
+	}
+
+	.box-setting.closed {
+		margin-right: -700px;
+	}
+}
+
+.box-setting-info {
+	width: 100%;
+	height: calc(60vh - 150px);
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+@media (max-height: 500px) {
+	body {
+		zoom: 75%;
+	}
+
+	.box-setting-info {
+		height: 30vh;
+	}
+}
+
+@media (min-height: 800px) {
+
+	.box-setting-info {
+		height: 60vh;
+	}
+}
+
+.box-setting-info::-webkit-scrollbar {
+	width: 0px;
+	display: none;
+}
+
+#closeSideMenu {
+	font-size: 2rem;
+	position: absolute;
+	right: 25px;
+	top: 25px;
+	color: #083141ff;
+	opacity: 0.5;
+}
+
+#closeSideMenu:hover {
+	opacity: 1;
+	font-size: 2.1rem;
+}
+
+#togglebox-setting {
+	box-shadow: -1px 1px 10px 1px #333;
+	width: 60px;
+	height: 60px;
+	background: white;
+	position: fixed;
+	right: 0px;
+	top: 110px;
+	z-index: 10;
+	border-start-start-radius: 15px;
+	border-end-start-radius: 15px;
+	font-size: 1.5rem;
+	opacity: 0.5;
+	transition: opacity 0.1s ease-in;
+}
+
+#togglebox-setting:hover {
+	opacity: 1;
+	color: #ff0046b9;
+	box-shadow: -1px 1px 10px 1px #ff0046b9;
+}
+
+.recipientRoundBox {
+	width: 20px;
+	height: 20px;
+	border-radius: 100%;
+}
+
+.hidden {
+	display: none !important;
+}
+
+.pagination {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	color: #eee;
+	font-size: 1.4rem;
+}
+
+.pagination span {
+	font-size: 1.1rem;
+	margin: 0 10px;
+}
+
+.pagination button {
+	font-size: 1.5rem;
+}
+
+button:active>* {
+	color: #8d8d8d;
+}
+
+footer ul {
+	list-style-type: none;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: relative;
+}
+
+footer ul li:first-child {
+	margin-left: 20px;
+}
+
+footer ul li:last-child {
+	margin-right: 20px;
+}
+
+#zoomValue {
+	display: inline-block;
+	font-size: 0.9rem;
+	width: 60px;
+	vertical-align: central;
+}
+
+#openPDF, #openPdf {
+	font-size: 1.2rem;
+	padding: 2px 5px;
+	font-weight: 700;
+	color: #eee;
+}
+
+/*
+@media screen and (max-width: 768px) {
+	.pdf-viewer {
+		background-color: #333;
+		margin: 0;
+		width: 1200px;
+	}
+}
+*/
+.boxSign {
+	position: absolute;
+	overflow: hidden;
+	opacity: 0.7;
+	background-color: rgba(68, 65, 65, 0.59);
+}
+
+.boxSign[data-type="signature"] {
+	width: 300px !important;
+	height: 200px !important;
+}
+
+.boxSign[data-type="paraphe"] {
+	width: 90px !important;
+	height: 90px !important;
+}
+
+.ribbon-wrapper .ribbon {
+	font-size: .7rem !important;
+	top: 15px !important;
+	right: 17px !important;
+	width: 120px !important;
+}
+
+.ribbon:hover {
+	cursor: move;
+}
+
+.login-mail {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.note-editable {
+	background-color: #fff;
+}
+
+.modal-backdrop.show {
+	width: 100%;
+	height: 100%;
+}
+
+.select2-selection__choice {
+	background-color: rgb(0, 61, 97) !important;
+}
+
+.select2-selection__choice__display {
+	margin-left: 8px;
+}
+
+.document-type {
+    margin-left: 5px; 
+    margin-right: 20px; 
+    margin-bottom: 10px; 
+    padding: 20px; 
+    background-color: #EEEEEE; 
+    border-radius: 20px; 
+    cursor: pointer; 
+    list-style-type: none;
+}

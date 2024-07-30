@@ -1,0 +1,184 @@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/admlte/plugins/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/css/dynamic_fields.css" />
+
+<script src="~/admlte/plugins/sweetalert2/sweetalert2.all.min.js"></script>
+
+<div>
+    <button id="add-global-dynamic-field" class="btn btn-primary">Ajouter un champ dynamique global</button>
+
+    <u style="display: block; margin-top: 20px;">Liste des champs dynamiques globaux</u>
+
+    <ul id="dynamic-fields-list"></ul>
+
+    <div class="modal fade" id="add-global-dynamic-field-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="card-primary">
+                    <div class="card-header">
+                        <h4 class="card-title"><i class="fa fa-user-alt"></i>Champ dynamique global</h4>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="card-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="label">Étiquette</Label>
+                                <input type="text" id="label" placeholder="Étiquette" required />
+                            </div>
+
+                            <div id="access-control-container">
+                                <div class="form-group">
+                                    <div style="display: flex; align-items: center; gap: 15px">
+                                        <input type="checkbox" id="is-for-users-project" />
+                                        <label for="is-for-users-project" style="margin-bottom: 2.5px;">Visible par les
+                                            utilisateurs internes</Label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div style="display: flex; align-items: center; gap: 15px">
+                                        <input type="checkbox" id="is-for-suppliers" />
+                                        <label for="is-for-suppliers" style="margin-bottom: 2.5px;">Visible par les
+                                            fournisseurs</Label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div style="display: flex; align-items: center; gap: 15px">
+                                    <input type="checkbox" id="isRequired" />
+                                    <label for="isRequired" style="margin-bottom: 2.5px;">Requis</Label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="dynamic-field-types">Type: </Label>
+                                <select name="dynamic-field-types" id="dynamic-field-types">
+                                    <option value="" selected></option>
+                                </select>
+
+                                <div id="add-values-container" style="margin-top: 10px;">
+                                    <div class="form-inline">
+                                        <input type="text" id="text-value" class="form-control" />
+                                        <button id="add-value" type="button" class="btn btn-primary"
+                                            style="margin-left: 5px;">Ajouter</button>
+                                    </div>
+                                    <div id="values-container">
+                                        <h1>Valeurs: </h1>
+                                        <ul id="values" class="list-group"></ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-danger" data-action="cancel">Annuler</button>
+                    <button type="button" class="btn btn-primary" data-action="post">Envoyer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="dynamic-field-details">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="card-primary">
+                <div class="card-header bg-gray-dark">
+                    <h4 class="card-title"><i class="fa fa-user-alt"></i>Champ dynamique global</h4>
+
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="card-body">
+                    <div id="details" style="margin-top: 15px;">
+                        <div class="form-group">
+                            <label for="label-details">Étiquette: </label>
+                            <input type="text" class="form-control" id="label-details" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="type">Type: </span>
+                            <span id="type"></span>
+                        </div>
+
+                        <hr class="form-group" />
+
+                        <div id="access-control-container">
+                            <div class="form-group">
+                                <input type="checkbox" id="is-for-users-project-details" />
+                                <label for="is-for-users-project-details" style="margin-bottom: 2.5px;">Visible par les
+                                    utilisateurs internes</label>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="checkbox" id="is-for-suppliers-details" />
+                                <label for="is-for-suppliers-details" style="margin-bottom: 2.5px;">Visible par les
+                                    fournisseurs</label>
+                            </div>
+                        </div>
+
+                        <hr class="form-group" />
+
+                        <div class="form-group">
+                            <input type="checkbox" id="is-required-details" />
+                            <label for="is-required-details">Requis</label>
+                        </div>
+
+                        <hr class="form-group" />
+
+                        <div class="form-group" id="values-detail">
+                            <label for="values-list">Valeurs: </label>
+
+                            <ul id="values-list" class="list-group"></ul>
+
+                            <button id="add-value-btn" class="btn btn-primary">Ajouter une valeur</button>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" id="delete-global-dynamic-field-btn" style="margin-top: 10px;">Supprimer
+                        le champ dynamique</button>
+
+                    <div class="modal fade" id="add-value-modal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header bg-gray-dark">
+                                    <h4 class="card-title"><i class="fa fa-user-alt"></i>Nouvelle valeur</h4>
+                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+
+                                <form class="card-body" id="add-value-form" class="form-inline">
+                                    <div>
+                                        <input type="text" id="text-value-details" class="form-control" required />
+                                    </div>
+
+                                    <div class="modal-footer justify-content-between">
+                                        <button type="button" class="btn btn-danger" type="button"
+                                            data-action="cancel">Annuler</button>
+                                        <button type="button" class="btn btn-primary" type="submit"
+                                            data-action="add">Envoyer</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/widgets.js" asp-append-version="true"></script>
+<script type="module" src="~/js/dashboard/settings/dynamicFields/index.js" asp-append-version="true"></script>

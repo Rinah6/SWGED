@@ -1,0 +1,81 @@
+@{
+    ViewData["Controller"] = "Gestion des projets";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/admlte/plugins/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+
+<div class="card">
+    <div class="card-header"><br />
+        <div class="col-lg-4 col-6" style="cursor: pointer; " user-modal>
+            <div class="small-box bg-gradient-success">
+                <div class="inner">
+                    <h3 id="connected-users-count"></h3>
+                    <p>Nombre d'utilisateurs connectés total</p>
+                </div>
+            </div>
+        </div>
+        <br /><br />
+        <h3 class="card-title">Liste des utilisateurs</h3>
+        <div class="card-tools">
+            <div class="input-group input-group-sm" style="width: 150px;">
+                <input type="text" id="wsearch" class="form-control float-right" placeholder="Search">
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-default">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card-body table-responsive p-0">
+        <table class="table table-hover text-nowrap">
+            <thead>
+                <tr>
+                    <th>Statut</th>
+                    <th>Nom d'utilisateur</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Heure de début</th>
+                    <th>Heure de fin</th>
+                </tr>
+            </thead>
+
+            <tbody id="users-connections">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal fade" id="user-connections-history-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="card-primary">
+                <div class="card-header">
+                    <h3 class="card-title" id="modal-title"></h3>
+
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="card-body">
+                    <table class="table table-hover text-nowrap">
+                        <thead>
+                            <tr>
+                                <th>Heure de début</th>
+                                <th>Heure de fin</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="user-connections-history">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="module" src="~/js/dashboard/usersConnections.js" asp-append-version="true"></script>

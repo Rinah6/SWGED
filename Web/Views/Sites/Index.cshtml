@@ -1,0 +1,80 @@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/admlte/plugins/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/css/dynamic_fields.css" />
+
+<script src="~/admlte/plugins/sweetalert2/sweetalert2.all.min.js"></script>
+
+<div>
+    <button id="add-site" class="btn btn-primary">Ajouter un site</button>
+
+    <u style="display: block; margin-top: 20px;">Liste des sites</u>
+
+    <ul id="sites-list"></ul>
+</div>
+
+<div class="modal fade" id="add-site-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="card-primary">
+                <div class="card-header">
+                    <h4 class="card-title"><i class="fa fa-user-alt"></i>Nouveau site</h4>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="card-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="new-code-label">Code: </Label>
+                            <input type="text" id="new-code-label" placeholder="Code" required />
+                            <label for="new-site-label">Nom: </Label>
+                            <input type="text" id="new-site-label" placeholder="Nom" required />
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-danger" id="close-add-site-modal">Annuler</button>
+                <button type="button" class="btn btn-primary" id="post-site">Envoyer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="site-details">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="card-primary">
+                <div class="card-header bg-gray-dark">
+                    <h4 class="card-title"><i class="fa fa-user-alt"></i></h4>
+
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="current-site-siteid">Code: </Label>
+                        <input type="text" id="current-site-siteid" placeholder="Code" required />
+                        
+                        <label for="current-site-name">Nom: </Label>
+                        <input type="text" id="current-site-name" placeholder="Nom" required />
+                    </div>
+
+                    <button class="btn btn-danger" id="delete-site" style="margin-top: 10px;">Supprimer le site</button>
+                    <button class="btn btn-primary" id="save-site-details" style="margin-top: 10px;">Enregistrer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/widgets.js"></script>
+<script type="module" src="~/js/dashboard/settings/Sites/index.js" asp-append-version="true"></script>

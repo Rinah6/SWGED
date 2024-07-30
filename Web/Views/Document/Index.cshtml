@@ -1,0 +1,194 @@
+﻿<partial name="~/Views/Widget/headerCard.cshtml" />
+
+<partial name="~/Views/Modal/SignPad.cshtml" />
+
+<link rel="stylesheet" href="~/admlte/plugins/sweetalert2/sweetalert2.min.css" />
+<link rel="stylesheet" href="~/lib/singpad/style.css" />
+<link rel="stylesheet" href="~/css/documents.manager.css" />
+
+<section class="content-header">
+	<div class="container-fluid">
+		<div class="row mb-2">
+			<div class="col-sm-6">
+				<h1>Menu des documents</h1>
+			</div>
+
+			<div class="col-sm-6">
+				<ul class="breadcrumb float-sm-right">
+					<li class="breadcrumb-item"><a href="#">Home</a></li>
+					<li class="breadcrumb-item active">Documents</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+
+<div id="modal-attachement" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" style="font-family: Helvetica, Sans-Serif; display:none;">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header bg-gray-dark">
+                <h4 class="modal-title"><i class="fa fa-paper-plan"></i> </h4>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <iframe id="represent-attachement" frameborder="0" width="100%" height="700"></iframe>
+                <img id="represent-image" width="100%" height="700" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="content">
+	<div class="row">
+		<div class="col-md-3">
+            <div id="sign"></div>
+            <br />
+
+			<div class="card mb-5">
+				<div class="card-header">
+					<h3 class="card-title">Documents</h3>
+
+					<div class="card-tools">
+						<button type="button" class="btn btn-tool" data-card-widget="collapse">
+							<i class="fas fa-minus"></i>
+						</button>
+					</div>
+				</div>
+
+				<div class="card-body p-0">
+					<ul class="nav nav-pills flex-column">
+						<li class="nav-item active">
+							<div class="nav-link" data-documents-label="received_from_suppliers">
+								<i class="fa fa-inbox"></i> <span>Reçus des fournisseurs</span>
+								<span class="badge bg-secondary float-right number-of-documents">0</span>
+							</div>
+						</li>
+
+						<li class="nav-item active">
+							<div class="nav-link" data-documents-label="received">
+								<i class="fa fa-inbox"></i> <span>Reçus</span>
+								<span class="badge bg-primary float-right number-of-documents">0</span>
+							</div>
+						</li>
+
+						<li class="nav-item active">
+							<div class="nav-link" data-documents-label="sended">
+								<i class="fa fa-paper-plane"></i> <span>Envoyés</span>
+								<span class="badge bg-info float-right number-of-documents">0</span>
+							</div>
+						</li>
+
+						<li class="nav-item">
+							<div class="nav-link" data-documents-status="1" data-documents-label="ongoing">
+								<i class="fa fa-spinner fa-spin"></i> <span>En Cours</span>
+								<span class="badge bg-warning float-right number-of-documents">0</span>
+							</div>
+						</li>
+
+						<li class="nav-item">
+							<div class="nav-link" data-documents-status="2" data-documents-label="canceled">
+								<i class="fa fa-times"></i> <span>Refusés</span>
+								<span class="badge bg-danger float-right number-of-documents">0</span>
+							</div>
+						</li>
+
+						<li class="nav-item">
+							<div class="nav-link" data-documents-status="3" data-documents-label="archived">
+								<i class="fas fa-file-archive"></i> <span>Archivés</span>
+								<span class="badge bg-success float-right number-of-documents">0</span>
+							</div>
+						</li>
+
+						<li class="nav-item">
+							<div class="nav-link" data-documents-label="common_documents">
+								<i class="fa fa-book"></i> <span>Documents communs</span>
+								<span class="badge bg-teal float-right number-of-documents">0</span>
+							</div>
+						</li>
+
+						<li class="nav-item"></li>
+					</ul>
+
+					@* <ul class="nav nav-pills flex-column" id="attachment_menu">
+						<li class="nav-item"></li>
+
+						<li class="nav-item active" id="attachement">
+							<div class="nav-link">
+								<i class="fa fa-file"></i> Liste des pièces jointes
+							</div>
+						</li>
+
+                        <input type="file" id="list_pj" multiple="multiple" hidden />
+
+		                <div class="card-body p-0" id="Addattachement">
+			                <ul class="nav nav-pills flex-column" id="documentmenu">
+				                <li class="nav-item active" >
+					                <div class="nav-link">
+						                <i class="fa fa-plus"></i> Ajouter une pièce jointe
+					                </div>
+				                </li>
+			                </ul>
+		                </div>
+					</ul> *@
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md" id="Panel">
+			<div id="p_MyDocument" data-type="panel" data-stat="all">
+				<div class="card card-primary card-outline mb-5">
+					<div class="card-header">
+						<h3 class="card-title" document-title>Boîte de réception</h3>
+
+						<div class="card-tools">
+							<div class="input-group input-group-sm">
+								<div class="dropdown">
+									<a class="nav-link" href="#" data-bs-toggle="dropdown">
+										<i class="fa fa-filter"></i>
+									</a>
+
+									<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+										<span class="dropdown-item dropdown-header">Filtrer par :</span>
+										<div class="dropdown-divider"></div>
+										<span class="dropdown-item">
+											Date d'envoi : <input type="date" class="form-control" id="date_envoi" />
+										</span>
+										<div class="dropdown-divider"></div>
+										<span class="dropdown-item">
+											Titre ou message : <input type="text" class="form-control" id="objetss" />
+										</span>
+										<div class="dropdown-divider"></div>
+										<span class="dropdown-item">
+											Destinataire : <input type="text" class="form-control" id="destinatairess" />
+										</span>
+										<div class="dropdown-divider"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="card-tools" id="suppliers-filter"></div>
+					</div>
+
+					<div class="card-body p-0">
+						<div class="mailbox-controls" id="validate-all-documents-container" style="margin-left: 93px;"></div>
+
+						<div class="table-responsive"style="overflow: visible; ">
+							@* <table class="table table-hover table-striped">
+								<tbody id="documents-list"></tbody>
+							</table> *@
+
+							<ul id="documents-list"></ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script src="~/js/widgets.js" asp-append-version="true"></script>
+<script type="module" src="~/js/documents/index.js" asp-append-version="true"></script>

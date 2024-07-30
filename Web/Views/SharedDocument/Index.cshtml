@@ -1,0 +1,98 @@
+﻿@{
+    Layout = null;
+}
+
+<title>SoftGED</title>
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/lib/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="~/admlte/plugins/sweetalert2/sweetalert2.min.css" />
+<link rel="stylesheet" href="~/admlte/dist/css/adminlte.css" />
+
+<link rel="stylesheet" href="~/css/site.css" />
+<link rel="stylesheet" href="~/css/style.css" />
+<link rel="stylesheet" href="~/css/loader.css" />
+<link rel="stylesheet" href="~/css/documents.manager.css" />
+
+<script src="~/lib/pdfjs/pdf.worker.min.js"></script>
+<script src="~/lib/pdfjs/pdf.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/admlte/plugins/sweetalert2/sweetalert2.all.min.js"></script>
+<script src="~/admlte/dist/js/adminlte.min.js"></script>
+<script src="~/lib/dayjs.min.js"></script>
+<script src="~/lib/axios.min.js"></script>
+
+<section>
+    <div id="modal-attachement" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" style="font-family: Helvetica, Sans-Serif; display:none;">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header bg-gray-dark">
+                    <h4 class="modal-title"><i class="fa fa-paper-plan"></i> </h4>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <iframe id="represent-attachement" frameborder="0" width="100%" height="700"></iframe>
+                    <img id="represent-image" width="100%" height="700" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="loader" class="lds-dual-ring display-none overlay"></div>
+    <div class="col-3">
+        <div class="card mb-5">
+            <div class="card-header">
+                <h3 class="card-title">Liste des pièces jointes</h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <ul class="nav nav-pills flex-column" id="attachment_menu">
+                    <li class="nav-item">
+                    </li>
+                    <li class="nav-item active" id="attachement">
+                        <div class="nav-link">
+                            <i class="fa fa-file"></i>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md" id="Panel">
+            @* <div style="position: abolute; left: 50%; transform: translate(50%);">
+                <div id="pagination"></div>
+                    <div id="pdf-container">
+                        <div class="col-lg-12" style="font-size: 40px;" id="default-pdf-viewer">
+                            <div id="previous" class="nav-link d-inline-block">
+                                <i class="fas fa-arrow-alt-circle-left" style="cursor: pointer"></i>
+                            </div>
+                            <span id="current_page" class="nav-link d-inline-block">0 sur 0</span>
+                            <div id="next" class="nav-link d-inline-block">
+                                <i class="fas fa-arrow-alt-circle-right" style="cursor: pointer"></i>
+                            </div>
+                        </div>
+
+                        <canvas id="pdf-viewer" class="pdf-viewer"></canvas>
+                    </div>
+                    <button style="margin-top:20px;" class="btn btn-primary btn-sm" download_button>
+                        Télécharger document
+                    </button>
+                </div>
+            </div> *@
+        </div>
+
+    <div class="col-6 offset-3" style="display: flex; flex-direction: column;">
+    @* <button style="margin-left:20px;" class="btn btn-secondary btn-sm" print_button>
+    Imprimer le document
+    </button> *@
+    </div>
+</section>
+
+<script src="~/js/widgets.js" asp-append-version="true"></script>
+<script src="~/js/documents/shared/index.js" asp-append-version="true" type="module"></script>

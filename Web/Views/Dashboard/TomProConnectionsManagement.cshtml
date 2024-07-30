@@ -1,0 +1,50 @@
+<div class="modal fade" id="add-tom-pro-db-connection-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="card-primary">
+                <div class="card-header">
+                    <h3 class="card-title" id="modal-title">Nouvelle connexion à une base de données de Tom Pro</h3>
+
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="server-name">Instance: </label>
+
+                        <input type="text" id="server-name" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="authentication-modes">Mode d'authentification: </label>
+
+                        <select id="authentication-modes" style="width: 250px; ">
+                            <option value="0" selected>Authentification Windows</option>
+                            <option value="1">Authentification SQL Server</option>
+                        </select>
+                    </div>
+
+                    <div id="sa-password"></div>
+
+                    <div class="form-row" id="databases-container"></div>
+
+                    <div id="save-db-connection-container"></div>
+                </div>
+
+                <div class="card-footer">
+                    <button class=" btn btn-primary" id="connection-btn">Connexion</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<button class="btn btn-primary" id="add-tom-pro-db-connection">Ajouter une nouvelle connexion</button>
+
+<ul id="tom-pro-connection">
+    
+</ul>
+
+<script type="module" src="~/js/dashboard/settings/TomProConnection/script.js" asp-append-version="true"></script>

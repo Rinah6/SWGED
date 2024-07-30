@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+
+canvas{
+	padding: 2px;
+}
+.pdf-viewer{
+	background-color: #333;
+	margin: 0;
+	width: 40%;
+}
+.pdf-viewer-client {
+	background-color: #333;
+	margin: 0;
+	width: 100%;
+}
+
+.hidden{
+	display:none;
+}
+
+.pagination{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	color: #eee;
+	font-size: 1.4rem;
+}
+
+.pagination span{
+	font-size: 1.1rem;
+	margin: 0 10px;
+}
+
+.pagination button{
+	font-size: 1.5rem;
+}
+
+button:active > *{
+	color: #8d8d8d;
+}
+
+footer ul{
+	list-style-type: none;
+	width: 100%;
+	height: 100%;
+	display:flex;
+	justify-content:space-between;
+	align-items:center;
+	position: relative;
+}
+
+footer ul li:first-child{
+	margin-left: 20px;
+}
+
+footer ul li:last-child{
+	margin-right: 20px;
+}
+
+#zoomValue{
+	display:inline-block;
+	font-size: 0.9rem;
+	width: 60px;
+	vertical-align: central;
+}
+
+#openPDF{
+	font-size: 1.2rem;
+	padding: 2px 5px;
+	font-weight: 700;
+	color:#eee;
+}
+
+@media screen and (max-width: 768px) {
+	.pdf-viewer{
+		background-color: #333;
+		margin: 0;
+		width: 70%;
+	}
+}
+
+.boxSign {
+	position: absolute;
+	min-width: 2px;
+	min-height: 2px;
+	max-width: 200px;
+	max-height: 150px;
+	width: 75px;
+	height: 50px;
+	z-index: 999;
+	resize: both;
+	overflow: hidden;
+	opacity: 0.7;
+    background-color: rgba(68, 65, 65, 0.59);
+    border : 2px dashed #ff6a00;
+}
+
+.login-mail {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
+
+.note-editable{
+	background-color: #fff;
+}
+
+.modal-backdrop.show{
+	width: 100%;
+	height: 100%;
+}

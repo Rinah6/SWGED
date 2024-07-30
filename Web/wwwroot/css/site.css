@@ -1,0 +1,25 @@
+html {
+    font-size: 14px;
+    zoom: 80% !important;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+
+
+body {
+    margin-bottom: 60px;
+}
+
+.topm {
+    transition: all 0.3s ease-in-out;
+}
+
+    .topm:hover {
+        color: crimson !important;
+        font-size: 1.3rem !important;
+    }

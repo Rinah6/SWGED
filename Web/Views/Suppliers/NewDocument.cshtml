@@ -1,0 +1,149 @@
+@{
+    Layout = "~/Views/Shared/_SuppliersLayout.cshtml";
+}
+
+<div class="btn btn-block mb-1 p-3 font-weight-bolder">
+	<h3>Nouveau Document - <span id="project-name"></span></h3>
+</div>
+
+<hr />
+<div style="display: flex; justify-content: center;">
+	<div class="btn btn-info btn-block mb-3 p-3" data-action="openPdf" style="width: 400px;">
+		<i class="fa fa-upload"></i> Importer un document
+	</div>
+</div>
+<hr />
+
+<div style="display: flex; justify-content: center;">
+	<div class="mb-5">
+		<div class="flex-column">
+			<input type="file" id="input-pdf" accept="application/pdf" hidden />
+
+			<div id="pagination"></div>
+
+			<div style="position: relative;" id="pdf-container">
+				<div class="col-lg-12">
+					<div id="previous" class="nav-link d-inline-block">
+						<i class="fas fa-arrow-alt-circle-left" style="cursor: pointer"></i>
+					</div>
+
+					<span id="current-page" class="nav-link d-inline-block">0 sur 0</span>
+
+					<div id="next" class="nav-link d-inline-block"><i class="fas fa-arrow-alt-circle-right" style="cursor: pointer"></i></div>
+				</div>
+
+				<canvas id="pdf-viewer" class="pdf-viewer"></canvas>
+
+				<div class="text-center btn" id="input-img"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="box-setting" id="box-setting-menu">
+	<div class="box-setting-info" style="height: auto;">
+		<div class="card" card-id="detail">
+			<div class="card-header bg-teal">
+				<h3 class="card-title text-bold"><i class="fa fa-circle-exclamation"></i> Champs à remplir</h3>
+
+				<div class="card-tools">
+					<button type="button" class="btn btn-tool" data-card-widget="collapse">
+						<i class="fas fa-minus text-white"></i>
+					</button>
+				</div>
+			</div>
+
+			<div class="card-body p-2">
+				<p class="text-red">*** Champs obligatoires</p>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">*** Site</span>
+                    </div>
+                    <div id="div-current-site">
+                    </div>
+                </div>
+                @* <label for="select-current-site">Site: </label> 
+                <div id="div-current-site">
+                </div> *@
+
+				<div id="dynamic_fields">
+					<div class="input-group mb-2">
+						<div class="input-group-prepend">
+							<span class="input-group-text">*** Titre du document</span>
+						</div>
+						<input type="text" class="form-control" detail-id="title" />
+					</div>
+					<div class="input-group mb-2">
+						<div class="input-group-prepend">
+							<span class="input-group-text">*** Votre adresse email</span>
+						</div>
+						<input type="email" class="form-control" data-id="email" />
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="card" card-id="attachements">
+			<div class="card-header bg-teal">
+				<h3 class="card-title text-bold"><i class="fa fa-paperclip"></i> Pièces jointes</h3>
+
+				<div class="card-tools">
+					<button type="button" class="btn btn-tool" data-card-widget="collapse">
+						<i class="fas fa-minus text-white"></i>
+					</button>
+				</div>
+			</div>
+
+			<input type="file" id="input-attachements" multiple="multiple" hidden />
+
+			<div class="card-body p-0">
+				<ul class="nav nav-pills flex-column" id="documentmenu">
+					<li class="nav-item active" id="attachement">
+						<div class="nav-link">
+							<i class="fa fa-plus"></i> Ajouter une pièce jointe
+						</div>
+					</li>
+
+					<li id="attachements-list-tab"></li>
+				</ul>
+			</div>
+
+			<div class="card" card-id="object">
+				<div class="card-header bg-teal">
+					<h3 class="card-title text-bold"><i class="fa fa-circle-nodes"></i> Message </h3>
+					<div class="card-tools">
+						<button type="button" class="btn btn-tool" data-card-widget="collapse">
+							<i class="fas fa-minus text-white"></i>
+						</button>
+					</div>
+				</div>
+
+				<div class="card-body p-0">
+					<div class="input-group mb-0">
+						<div class="input-group-prepend">
+							<span class="input-group-text">Objet</span>
+						</div>
+						<input type="text" class="form-control" id="object" />
+					</div>
+
+					<div>
+						<textarea class="form-control" placeholder="Saisir un message..." cols="15" rows="10" id="message"></textarea>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="btn btn-info btn-block p-3" id="send-document" >
+			<i class="fa fa-paper-plane"></i>Envoyer
+		</div>
+	</div>
+</div>
+
+<script type="module" src="~/js/suppliers/newDocument/pdf.js"></script>
+<script type="module" src="~/js/suppliers/newDocument/attachements.js"></script>
+<script type="module" src="~/js/suppliers/newDocument/dynamicFields.js"></script>
+<script type="module" src="~/js/suppliers/newDocument/index.js"></script>
+
+<script defer>
+	$('#box-setting-menu').hide();
+</script>

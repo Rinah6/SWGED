@@ -1,0 +1,630 @@
+﻿<script src="~/lib/jquery-ui.js"></script>
+
+<partial name="~/Views/Widget/headerCard.cshtml" />
+
+<partial name="~/Views/Modal/SignPad.cshtml" />
+
+<section class="content-header">
+	<div class="container-fluid">
+		<div class="row mb-2">
+			<div class="col-sm-6">
+				<ul class="breadcrumb float-sm-right">
+					<li class="breadcrumb-item">
+						<a asp-action="Index" asp-controller="Document">Home</a>
+					</li>
+					<li class="breadcrumb-item active">
+						Nouveau Document
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="content">
+	<div class="row">
+		<div class="">
+			<div class="togglebox-setting text-center d-flex justify-content-center align-items-center btn"
+				id="togglebox-setting">
+				<i class="fa fa-bars"></i>\
+			</div>
+			<div class="box-setting" id="box-setting-menu">
+				<div class="d-flex btn" id="closeSideMenu">
+					<i class="fa fa-times"></i>
+				</div>
+				<div class="btn btn-block mb-1 p-3 font-weight-bolder">
+					<h3>Nouveau Document</h3>
+				</div>
+				<hr />
+				<div class="btn btn-info btn-block mb-3 p-3" data-action="open-pdf">
+					<i class="fa fa-upload"></i> Importer un document
+				</div>
+				<hr />
+				<div class="box-setting-info">
+                    <div class="row">
+                        <div class="col-md-12">
+					        <div class="card" card-id="action">
+						        <div class="card-header bg-teal">
+							        <h3 class="card-title text-bold">Action</h3>
+
+							        <div class="card-tools">
+								        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+									        <i class="fas fa-minus text-white"></i>
+								        </button>
+							        </div>
+						        </div>
+						        <div class="card-body p-0">
+							        <div class="nav nav-pills" style="display: flex;">
+								        <div class="btn btn-outline-info" usign
+									        style="display: flex; justify-content: center; align-items: center;">
+									        Inviter à signer ou à valider
+								        </div>
+								        <div class="btn btn-outline-info" isign
+									        style="display: flex; justify-content: center; align-items: center;">
+									        Signer moi-même
+								        </div>
+								        <div class="btn btn-outline-info" archiving
+									        style="display: flex; justify-content: center; align-items: center;">
+									        Archiver immédiatement
+								        </div>
+							        </div>
+						        </div>
+					        </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+					        <div class="card" card-id="attachement">
+						        <div class="card-header bg-teal">
+							        <h3 class="card-title text-bold"><i class="fa fa-paperclip"></i> Pièces jointes</h3>
+
+							        <div class="card-tools">
+								        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+									        <i class="fas fa-minus text-white"></i>
+								        </button>
+							        </div>
+						        </div>
+						        <input type="file" id="list_pj" multiple="multiple" hidden />
+						        <div class="card-body p-0">
+							        <ul class="nav nav-pills flex-column" id="documentmenu">
+								        <li class="nav-item active" id="attachement">
+									        <div class="nav-link">
+										        <i class="fa fa-plus"></i> Ajouter une pièce jointe
+									        </div>
+								        </li>
+								        <li id="attachements-list-tab"></li>
+							        </ul>
+						        </div>
+					        </div>
+
+                        </div>
+                        <div class="col-md-6">
+					        <div class="card" card-id="recipient">
+						        <div class="card-header bg-teal">
+							        <h3 class="card-title text-bold"><i class="fa fa-circle-nodes"></i> Circuit de traitement
+							        </h3>
+
+							        <div class="card-tools">
+								        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+									        <i class="fas fa-minus text-white"></i>
+								        </button>
+							        </div>
+						        </div>
+
+						        <div class="card-body p-0">
+							        <ul class="nav nav-pills flex-column" id="recipients-list">
+								        <li class="nav-item active" id="show-document-types-modal">
+									        <div class="nav-link">
+										        <i class="fa fa-user-plus"></i>Sélectionner un type de document
+									        </div>
+								        </li>
+							        </ul>
+						        </div>
+
+						        <div class="card-body p-0">
+							        <ul class="nav nav-pills flex-column" id="recipients-list">
+								        <li class="nav-item active" id="show-add-users-steps-modal">
+									        <div class="nav-link">
+										        <i class="fa fa-user-plus"></i> Ajouter une étape de validation
+									        </div>
+								        </li>
+							        </ul>
+						        </div>
+					        </div>
+
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+					        <div class="card" card-id="detail">
+						        <div class="card-header bg-teal">
+							        <h3 class="card-title text-bold"><i class="fa fa-circle-exclamation"></i> Champs à remplir
+							        </h3>
+
+							        <div class="card-tools">
+								        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+									        <i class="fas fa-minus text-white"></i>
+								        </button>
+							        </div>
+						        </div>
+
+						        <div class="card-body p-2">
+							        <p class="text-red">*** Champs obligatoires</p>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">*** Site</span>
+                                        </div>
+                                        <div id="div-current-site">
+                                        </div>
+                                    </div>
+                                    @* <label for="select-current-site">Site: </label>
+                                    <div id="div-current-site">
+                                    </div> *@
+
+							        <div id="dynamic_fields">
+								        <div>
+									        <div class="input-group mb-2">
+										        <div class="input-group-prepend">
+											        <span class="input-group-text">*** Titre du document</span>
+										        </div>
+										        <input type="text" class="form-control" detail-id="title" />
+									        </div>
+
+									        <div id="rsf-container"></div>
+								        </div>
+							        </div>
+						        </div>
+					        </div>
+
+                        </div>
+                        <div class="col-md-6">
+					        <div class="card" card-id="object">
+						        <div class="card-header bg-teal">
+							        <h3 class="card-title text-bold"><i class="fa fa-circle-nodes"></i> Message </h3>
+							        <div class="card-tools">
+								        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+									        <i class="fas fa-minus text-white"></i>
+								        </button>
+							        </div>
+						        </div>
+
+						        <div class="card-body p-0">
+							        <div class="input-group mb-0">
+								        <div class="input-group-prepend">
+									        <span class="input-group-text">Objet</span>
+								        </div>
+								        <input type="text" class="form-control" id="object" />
+							        </div>
+							        @* <div class="input-group mb-2">
+							        <textarea class="form-control" placeholder="Saisir un message..." cols="30" rows="10"
+							        id="message"></textarea>
+							        </div> *@
+							        <div>
+								        <textarea class="form-control" placeholder="Saisir un message..." cols="15" rows="10"
+									        id="global-message"></textarea>
+							        </div>
+						        </div>
+					        </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+					        <div class="card" card-id="field">
+						        <div class="card-header bg-teal">
+							        <h3 class="card-title text-bold"><i class="fa fa-cubes-stacked"></i> Champs</h3>
+
+							        <div class="card-tools">
+								        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+									        <i class="fas fa-minus text-white"></i>
+								        </button>
+							        </div>
+						        </div>
+						        <div class="card-body p-0">
+							        <ul class="nav nav-pills flex-column" id="fieldmenu">
+								        <li class="nav-item active" data-type="signature" data-id="0">
+									        <div class="nav-link navbar dropdown">
+										        <div class="pl-2 w-100" data-bs-toggle="dropdown" aria-haspopup="true"
+											        aria-expanded="true">
+											        <i class="fa fa-signature col-1"> </i> <span class="col"
+												        data-title>Signature</span>
+										        </div>
+										        <div class="dropdown-menu form-inline">
+											        <div class="dropdown-item dropdown-header text-left">Page :</div>
+											        <i class="small text-gray col-md-2">De : </i>
+											        <input type="number" class="form-control col-md-3" firstPage placeholder="0"
+												        min="0" max="0" />
+											        <i class="small text-gray col-md-2"> à </i>
+											        <input type="number" class="form-control col-md-3" lastPage placeholder="0"
+												        min="0" max="0" />
+											        <i class="fa fa-plus-circle col-md-2 text-success" data-action="addField"
+												        data-target="listSignature"></i>
+										        </div>
+									        </div>
+								        </li>
+								        <li id="listSignature"></li>
+
+								        @* <li class="nav-item active" data-type="paraphe" data-id="1">
+									        <div class="nav-link navbar dropdown">
+										        <div class="pl-2 w-100" data-bs-toggle="dropdown" aria-haspopup="true"
+											        aria-expanded="true">
+											        <i class="fa fa-pen col-1"> </i> <span class="col" data-title>Paraphe</span>
+										        </div>
+										        <div class="dropdown-menu form-inline">
+											        <div class="dropdown-item dropdown-header text-left">Page :</div>
+											        <i class="small text-gray col-md-2">De : </i>
+											        <input type="number" class="form-control col-md-3" firstPage placeholder="0"
+												        min="0" max="0" />
+											        <i class="small text-gray col-md-2"> à </i>
+											        <input type="number" class="form-control col-md-3" lastPage placeholder="0"
+												        min="0" max="0" />
+											        <i class="fa fa-plus-circle col-md-2 text-success" data-action="addField"
+												        data-target="listParaphe"></i>
+										        </div>
+									        </div>
+								        </li> *@
+								        <li id="listParaphe"></li>
+
+
+								        <li class="nav-item active" data-type="stamp" data-id="2" hidden>
+									        <div class="nav-link navbar dropdown">
+										        <div class="pl-2 w-100" data-bs-toggle="dropdown" aria-haspopup="true"
+											        aria-expanded="true">
+											        <i class="fa fa-stamp col-1"> </i> <span class="col"
+												        data-title>Tampon</span>
+										        </div>
+										        <div class="dropdown-menu form-inline">
+											        <div class="dropdown-item dropdown-header text-left">Page :</div>
+											        <i class="small text-gray col-md-2">De : </i>
+											        <input type="number" class="form-control col-md-3" firstPage placeholder="0"
+												        min="0" max="0" />
+											        <i class="small text-gray col-md-2"> à </i>
+											        <input type="number" class="form-control col-md-3" lastPage placeholder="0"
+												        min="0" max="0" />
+											        <i class="fa fa-plus-circle col-md-2 text-success" data-action="addField"
+												        data-target="listStamp"></i>
+										        </div>
+									        </div>
+								        </li>
+								        <li id="listStamp"></li>
+
+								        <li class="nav-item active" data-type="dateSign" data-id="3" hidden>
+									        <div class="nav-link navbar dropdown">
+										        <div class="pl-2 w-100" data-bs-toggle="dropdown" aria-haspopup="true"
+											        aria-expanded="true">
+											        <i class="fa fa-calendar col-1"> </i> <span class="col" data-title>Date de
+												        signature</span>
+										        </div>
+										        <div class="dropdown-menu form-inline">
+											        <div class="dropdown-item dropdown-header text-left">Page :</div>
+											        <i class="small text-gray col-md-2">De : </i>
+											        <input type="number" class="form-control col-md-3" firstPage placeholder="0"
+												        min="0" max="0" />
+											        <i class="small text-gray col-md-2"> à </i>
+											        <input type="number" class="form-control col-md-3" lastPage placeholder="0"
+												        min="0" max="0" />
+											        <i class="fa fa-plus-circle col-md-2 text-success" data-action="addField"
+												        data-target="listDateSign"></i>
+										        </div>
+									        </div>
+								        </li>
+								        <li id="listDateSign"></li>
+
+								        <li class="nav-item active" data-type="text" data-id="4" hidden>
+									        <div class="nav-link navbar dropdown">
+										        <div class="pl-2 w-100" data-bs-toggle="dropdown" aria-haspopup="true"
+											        aria-expanded="true">
+											        <i class="fa fa-t col-1"> </i> <span class="col" data-title>Text</span>
+										        </div>
+										        <div class="dropdown-menu form-inline">
+											        <div class="dropdown-item dropdown-header text-left">Page :</div>
+											        <i class="small text-gray col-md-2">De : </i>
+											        <input type="number" class="form-control col-md-3" firstPage placeholder="0"
+												        min="0" max="0" />
+											        <i class="small text-gray col-md-2"> à </i>
+											        <input type="number" class="form-control col-md-3" lastPage placeholder="0"
+												        min="0" max="0" />
+											        <i class="fa fa-plus-circle col-md-2 text-success" data-action="addField"
+												        data-target="listText"></i>
+										        </div>
+									        </div>
+								        </li>
+								        <li id="listText"></li>
+
+
+								        <li class="">
+									        <hr />
+								        </li>
+								        <li class="nav-item" showAll>
+									        <div class="nav-link navbar dropdown">
+										        <div class="pl-2 w-100">
+											        <i class="far fa-square-check col-1"> </i> <span class="col"
+												        data-title>Afficher tout</span>
+										        </div>
+
+									        </div>
+								        </li>
+
+							        </ul>
+						        </div>
+					        </div>
+
+					        @* <div class="card collapsed-card"> *@
+					        <div class="card" card-id="type">
+						        <div class="card-header bg-teal">
+							        <h3 class="card-title text-bold"><i class="fa fa-folder-open"></i> Type de document</h3>
+
+							        <div class="card-tools">
+								        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+									        <i class="fas fa-minus text-white"></i>
+								        </button>
+							        </div>
+						        </div>
+						        <div class="card-body p-0">
+							        <ul class="nav nav-pills flex-column">
+								        <li class="nav-item active">
+									        <div class="nav-link">
+										        <div class="form-group">
+											        <label>Type :</label>
+											        <select class="form-control select2" id="selectType">
+												        <option>Attestation</option>
+												        <option selected="selected">Contrat</option>
+												        <option>Facture Achat</option>
+												        <option>Facture Vente</option>
+											        </select>
+										        </div>
+									        </div>
+								        </li>
+							        </ul>
+						        </div>
+					        </div>
+
+                        </div>
+                    </div>
+
+				</div>
+
+				<hr />
+
+				<div>
+					@* <div class="btn btn-info btn-block p-3" data-bs-toggle="modal" data-bs-target="#MailService" *@
+					<div class="btn btn-info btn-block p-3" id="YouSign"
+						title="Vérifier les champs dans destinataire et/ou les differents mails">
+						<i class="fa fa-paper-plane"></i> Envoyer
+					</div>
+					<div class="btn btn-info btn-block p-3" id="ISign">
+						<i class="fas fa-signature"></i> Envoyer
+					</div>
+					<div class="btn btn-info btn-block p-3" id="archive">
+						<i class="fas fa-signature"></i> Envoyer
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="mb-5">
+			<div class="flex-column">
+				<form enctype="multipart/form-data" method="post" id="getfile">
+					<input type="file" id="input-file" name="doc" accept="application/pdf" hidden>
+					<input type="submit" id="test" hidden />
+				</form>
+
+				<div id="pagination"></div>
+				<div style="position: relative;" id="pdf-container">
+					<div class="col-lg-12">
+						<div id="previous" class="nav-link d-inline-block"><i class="fas fa-arrow-alt-circle-left"
+								style="cursor: pointer"></i></div>
+						<span id="current_page" class="nav-link d-inline-block">0 sur 0</span>
+						<div id="next" class="nav-link d-inline-block"><i class="fas fa-arrow-alt-circle-right"
+								style="cursor: pointer"></i></div>
+					</div>
+					<canvas id="pdf-viewer" class="pdf-viewer"></canvas>
+					<div class="text-center btn" id="input-img"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<div id="signatureListBox" class="hidden"></div>
+<div id="fields-list-box"></div>
+
+<div class="modal fade" id="document-type-recipients-modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="card-primary">
+				<div class="card-header">
+					<h4 class="card-title"><i class="fa fa-user-alt"></i>Type de document - Validateurs</h4>
+					<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+
+				<div class="card-body">
+					<div class="form-group">
+						<label for="new-document-type-label">Type de document: </Label>
+						<select id="document-type-recipients" name="document-type-recipients"
+							style="width: 200px;"></select>
+					</div>
+
+					<ul id="steps"></ul>
+				</div>
+			</div>
+
+			<div class="modal-footer justify-content-between">
+				<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+				<button type="button" class="btn btn-primary" id="select-document-type-recipients">Sélectionner</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="users-steps-modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header bg-gray-dark">
+				<h4 class="modal-title">
+					<i class="fa fa-user-alt"></i>
+					Étape de validation
+				</h4>
+
+				<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+
+			<div class="modal-body">
+				<div class="form-group">
+					<label for="processing-duration">Durée de traitement (en heures): </label>
+					<input type="number" min="0" id="processing-duration" class="form-control" style="width: 200px;" />
+				</div>
+
+				@* <div class="form-group">
+					<label for="users-documents-roles">Rôle: </label>
+					<select id="users-documents-roles" class="form-control form-control-border"
+						style="width: 320px;"></select>
+				</div> *@
+
+				<div class="form-group">
+					<label for="recipients">Utilisateurs: </label>
+
+					<select id="recipients" multiple="multiple" class="form-control" style="width: 320px;"></select>
+				</div>
+
+				<div class="form-group container row">
+					<label for="message">Message: </Label>
+					<textarea id="message"></textarea>
+				</div>
+			</div>
+
+			<div class="modal-footer justify-content-between">
+				<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+				<button type="button" class="btn btn-primary" id="save-users-steps">Enregistrer</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="users-step-modal-details">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header bg-gray-dark">
+				<h4 class="modal-title">
+					<i class="fa fa-user-alt"></i>
+					Étape de validation
+				</h4>
+
+				<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+
+			<div class="modal-body">
+				<div class="form-group">
+					<label for="current-processing-duration">Durée de traitement (en heures): </label>
+					<input type="number" min="0" id="current-processing-duration" class="form-control"
+						style="width: 200px;" />
+				</div>
+
+				@* <div class="form-group">
+					<label for="current-users-documents">Rôle : </label>
+					<select id="current-users-documents" class="form-control form-control-border"
+						style="width: 320px;"></select>
+				</div> *@
+
+				<div class="form-group">
+					<label for="current-recipients">Validateurs: </label>
+
+					<select id="current-recipients" multiple="multiple" class="form-control"
+						style="width: 320px;"></select>
+				</div>
+
+				<div class="form-group container row">
+					<label for="current-message">Message: </Label>
+					<textarea id="current-message"></textarea>
+				</div>
+			</div>
+
+			<div class="modal-footer justify-content-between">
+				<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+				<button type="button" class="btn btn-primary" id="save-users-step-details">Enregistrer</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="MailService">
+	<div class="modal-dialog modal-xl">
+		<div class="modal-content">
+			<div class="modal-header bg-gray-dark">
+				<h4 class="modal-title"><i class="fa fa-user-alt"></i> Mail</h4>
+				<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<label class="input-group-text" for="objectId">Objet</Label>
+						</div>
+						<input type="text" class="form-control" id="objectId" placeholder="Objet" aria-label="Username"
+							aria-describedby="basic-addon1">
+					</div>
+
+					<div class="">
+						<textarea id="mailMessage"></textarea>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer justify-content-between">
+				<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Réinitialiser</button>
+				<button type="button" class="btn btn-primary" data-action="sendDocument">Envoyer</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="signature-modal">
+	<div class="modal-dialog modal-xl">
+		<div class="modal-content">
+			<div class="modal-header bg-gray-dark">
+				<h4 class="modal-title"><i class="fa fa-user-alt"></i> Mail</h4>
+				<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+
+			<div class="modal-body">
+				<div class="input-group mb-3">
+					<button class="btn btn-file btn-info" data-action="trigger-signature-image-file-input">Uploader une signature</button>
+					<input type="file" id="signature-image-file-input" hidden />
+				</div>
+
+				<div class="form-group" id="uploaded-signature-image-preview-container"></div>
+
+				<div class="form-group" id="extract-signature-from-image-container"></div>
+
+				<div class="form-group" id="signature-image-preview-container"></div>
+			</div>
+
+			<div id="signature-token-container"></div>
+
+			<div class="modal-footer justify-content-between">
+				<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Réinitialiser</button>
+				<button type="button" class="btn btn-primary" data-action="sign">Envoyer</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="module" src="~/js/newDocument/index.js" asp-append-version="true"></script>
+<script type="module" src="~/js/newDocument/pdf.js" asp-append-version="true"></script>
+<script type="module" src="~/js/newDocument/attachements.js" asp-append-version="true"></script>
+<script type="module" src="~/js/newDocument/menus.js" asp-append-version="true"></script>
+<script type="module" src="~/js/newDocument/dynamicFields.js" asp-append-version="true"></script>
+<script type="module" src="~/js/newDocument/fields.js" asp-append-version="true"></script>
+<script type="module" src="~/js/newDocument/recipients.js" asp-append-version="true"></script>
+<script type="module" src="~/js/newDocument/serverSendings.js" asp-append-version="true"></script>

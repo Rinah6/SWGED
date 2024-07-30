@@ -1,0 +1,78 @@
+﻿<section class="content mb-2">
+    <hr />
+
+    <div class="row text-bold">
+
+        <div class="col-lg-3 col-6">
+            <div class="small-box bg-indigo">
+                <div class="inner">
+                    <h3 id="total-number-of-documents">0</h3>
+                    <p>Total des documents</p>
+                </div>
+
+                <div class="icon">
+                    <i class="fas fa-inbox"></i>
+                </div>
+
+                <i class="small-box-footer">
+                    <i class="fas fa-circle"></i>
+                </i>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-6" style="cursor: pointer;">
+            <div class="small-box bg-cyan" id="ongoing-documents-link">
+                <div class="inner">
+                    <h3>0</h3>
+                    <p>Documents en cours</p>
+                </div>
+
+                <div class="icon">
+                    <i class="fas fa-spinner fa-spin"></i>
+                </div>
+
+                <i class="small-box-footer">
+                    <i class="fas fa-circle"></i>
+                </i>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-6" style="cursor: pointer;">
+            <div class="small-box bg-danger" id="canceled-documents-link">
+                <div class="inner">
+                    <h3>0</h3>
+                    <p>Documents refusés</p>
+                </div>
+
+                <div class="icon">
+                    <i class="fas fa-file-signature"></i>
+                </div>
+
+                <i class="small-box-footer">
+                    <i class="fas fa-circle"></i>
+                </i>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-6" style="cursor: pointer;">
+            <div class="small-box bg-success" id="archived-documents-link">
+                <div class="inner">
+                    <h3 data-id="ct_DocArc">0</h3>
+                    <p>Documents archivés</p>
+                </div>
+
+                <div class="icon">
+                    <i class="fas fa-file-archive"></i>
+                </div>
+
+                <i class="small-box-footer">
+                    <i class="fas fa-circle"></i>
+                </i>
+            </div>
+        </div>
+    </div>
+    
+    <hr />
+</section>
+
+<script type="module" src="~/js/documents/index.js" asp-append-version="true"></script>

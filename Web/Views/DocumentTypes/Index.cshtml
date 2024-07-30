@@ -1,0 +1,95 @@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/admlte/plugins/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/css/dynamic_fields.css" />
+<script src="~/admlte/plugins/sweetalert2/sweetalert2.all.min.js"></script>
+
+
+<div>
+    <button id="add-document-type" class="btn btn-primary">Ajouter un type de document</button>
+
+    <u style="display: block; margin-top: 20px;">Liste des types de document</u>
+
+    <ul id="document-types-list"></ul>
+</div>
+
+<div class="modal fade" id="add-document-type-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="card-primary">
+                <div class="card-header">
+                    <h4 class="card-title"><i class="fa fa-user-alt"></i>Nouveau type de document</h4>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="card-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="new-document-type-label">Étiquette: </Label>
+                            <input type="text" id="new-document-type-label" placeholder="Étiquette" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="new-current-sites">Sites autorisés: </label>
+                            <div id="new-current-sites"></div>
+                        </div>
+                        <ul id="steps"></ul>
+
+                        <div>
+                            <button class="btn btn-primary" id="add-step-btn" type="button">Ajouter une étape</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-danger" id="close-add-document-type-modal">Annuler</button>
+                <button type="button" class="btn btn-primary" id="post-document-type">Envoyer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="document-type-details">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="card-primary">
+                <div class="card-header bg-gray-dark">
+                    <h4 class="card-title"><i class="fa fa-user-alt"></i></h4>
+
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="current-document-type-title">Étiquette: </Label>
+                        <input type="text" id="current-document-type-title" placeholder="Étiquette" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="current-sites">Sites autorisés: </label>
+                        <div id="current-sites"></div>
+                    </div>
+
+                    <ul id="current-steps"></ul>
+
+                    <div>
+                        <button class="btn btn-primary" id="append-step-btn" type="button">Ajouter une étape</button>
+                    </div>
+
+                    <button class="btn btn-danger" id="delete-document-type" style="margin-top: 10px;">Supprimer le type de document</button>
+                    <button class="btn btn-primary" id="save-document-type-details" style="margin-top: 10px;">Enregistrer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/widgets.js"></script>
+<script type="module" src="~/js/dashboard/settings/documentTypes/index.js" asp-append-version="true"></script>
+<script type="module" src="~/js/dashboard/settings/documentTypes/details.js" asp-append-version="true"></script>

@@ -1,0 +1,100 @@
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>SoftGED - Fournisseurs</title>
+
+        <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="~/lib/fontawesome/css/all.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" />
+        <link rel="stylesheet" href="~/admlte/plugins/fontawesome-free/css/all.min.css" />
+        <link rel="stylesheet" href="~/admlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css" />
+        <link rel="stylesheet" href="~/admlte/dist/css/adminlte.min.css" />
+        <link rel="stylesheet" href="~/css/loader.css" />
+        <link rel="stylesheet" href="~/css/login.css" />
+
+        <script src="~/admlte/plugins/jquery/jquery.min.js"></script>
+        <script src="~/admlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="~/admlte/dist/js/adminlte.min.js"></script>
+        <script src="~/lib/axios.min.js"></script>
+	</head>
+
+    <body class="hold-transition login-page">
+        <div id="loader" class="lds-dual-ring display-none overlay"></div>
+
+        <div class="auth-login">
+            <div class="login-box">
+                <div class="card-header text-center">
+                    <img src="~/img/logo-soft.png" />
+
+                    <h1 id="auth-title" class="login-box-msg font-weight-bold" style="font-size: 16px;">Connexion</h1>
+                </div>
+
+                <form class="card-body" id="suppliers-form">
+                    <div class="form-group">
+                        <input type="checkbox" id="without-nif-and-stat" />
+                        <label for="without-nif-and-stat">Sans NIF et STAT</label>
+                    </div>
+
+                    <div id="nif-and-stat-container">
+                        <div class="input-group mb-3">
+                            <input type="text" placeholder="NIF" id="nif" class="form-control" maxlength="10" />
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <input type="text" placeholder="STAT" id="stat" class="form-control" maxlength="17" />
+                        </div>
+                    </div>
+
+                    <div id="cin-container">
+                        <div class="input-group mb-3">
+                            <input type="text" placeholder="N° CIN" id="cin" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div id="mail-container">
+                        <div class="input-group mb-3">
+                            <input type="email" placeholder="MAIL" id="mail" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div id="contact-container">
+                        <div class="input-group mb-3">
+                            <input type="text" placeholder="CONTACT" id="contact" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <input type="text" placeholder="Nom / Raison sociale" id="name" class="form-control" />
+                    </div>
+
+                    <button type="submit" id="suppliers-form-button" class="btn bg-gradient-olive btn-block text-white">Se connecter</button>
+                </form>
+
+                <p style="text-decoration: underline; cursor: pointer; color: blue; display: flex; justify-content: center;" id="signin-signup-toggler">
+                    Créer un nouveau compte
+                </p>
+            </div>
+
+            <footer class="main-footerRFR">
+                <strong>
+                    Copyright &copy; <span id="current-year"></span> <a href="https://www.softwell.mg">Softwell</a>.
+                </strong>
+                All rights reserved.
+            </footer>
+        </div>
+        
+        <script type="module" src="~/js/suppliers/index.js"></script>
+
+        <script defer>
+			'use strict';
+
+			$('#current-year').text(new Date().getFullYear());
+		</script>
+    </body>
+</html>
